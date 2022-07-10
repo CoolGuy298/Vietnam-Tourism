@@ -2,8 +2,12 @@ package tourism.entity.event;
 
 import java.io.IOException;
 
+import org.apache.jena.query.*;
+import org.apache.jena.rdf.model.*;
+
 import tourism.entity.IQueryable;
 import tourism.processor.DataProcessor;
+import tourism.vocabulary.VNTOURISM;
 
 public class Festival extends Event implements IQueryable {
 	private String hasDescription;
@@ -44,7 +48,36 @@ public class Festival extends Event implements IQueryable {
 				+ "     FILTER (lang(?hasDescription) = 'en')\r\n"
 				+ "}";
 		
-		DataProcessor.QueryToFile(queryString, Festival.TARGETFILE, new Festival());
+		QueryExecution qexec = DataProcessor.getQueryConnection(queryString);
+		ResultSet results = qexec.execSelect();
+		Model m = ModelFactory.createDefaultModel();
+		m.setNsPrefix(VNTOURISM.PREFIX, VNTOURISM.URI);
+		
+		while (results.hasNext()) {
+			QuerySolution qs = results.next();
+			Model temp = this.processQuery(qs);
+			m = m.union(temp);
+		}
+		
+		DataProcessor.writeToFile(m, Festival.TARGETFILE);
+		qexec.close();
+	}
+	
+	public Model processQuery(QuerySolution qs) throws IOException {
+		Model localModel = ModelFactory.createDefaultModel();
+		String name = qs.getLiteral("name").toString().replace(" ", "_");
+		String hasDescription = qs.getLiteral("hasDescription").toString();
+		Literal hasTimeHappenLiteral = qs.getLiteral("hasTimeHappen");
+		String hasTimeHappen = "";
+		if (hasTimeHappenLiteral != null)
+			hasTimeHappen = hasTimeHappenLiteral.toString();
+		Festival f = new Festival(name, hasDescription, hasTimeHappen);
+			
+		localModel.createResource(VNTOURISM.URI + f.getName(), VNTOURISM.Festival)
+			.addLiteral(VNTOURISM.hasDescription, f.getHasDescription())
+			.addLiteral(VNTOURISM.hasTimeHappen, f.getHasTimeHappen());
+		
+		return localModel;
 	}
 
 	

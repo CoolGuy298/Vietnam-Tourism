@@ -12,7 +12,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Trần_Kính@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1337-06-30" ;
-        vntourism:hasBornAt     "Đại_Việt" , "Hanoi" ;
+        vntourism:hasBornAt     "Hanoi" , "Đại_Việt" ;
         vntourism:hasDied       "1377-03-04" ;
         vntourism:hasReignFrom  "1373" ;
         vntourism:hasReignTo    "1373" ;
@@ -75,7 +75,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Nguyễn_Văn_Huệ@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1753" ;
-        vntourism:hasBornAt     "Bình_Định_province" , "Đàng_Trong" , "Đại_Việt" ;
+        vntourism:hasBornAt     "Đại_Việt" , "Đàng_Trong" , "Bình_Định_province" ;
         vntourism:hasDied       "1792-09-16" ;
         vntourism:hasReignFrom  "1788" ;
         vntourism:hasReignTo    "1792" ;
@@ -93,7 +93,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Trịnh_Tùng@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1550-12-19" ;
-        vntourism:hasBornAt     "Đại_Việt" , "Thanh_Hóa" ;
+        vntourism:hasBornAt     "Thanh_Hóa" , "Đại_Việt" ;
         vntourism:hasDied       "1623-07-17" ;
         vntourism:hasReignFrom  "1572" ;
         vntourism:hasReignTo    "1572" ;
@@ -111,7 +111,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Trịnh_Tráng@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1577-08-06" ;
-        vntourism:hasBornAt     "Vietnam" , "Thanh_Hóa" ;
+        vntourism:hasBornAt     "Thanh_Hóa" , "Vietnam" ;
         vntourism:hasDied       "1657-05-28" ;
         vntourism:hasReignFrom  "1623" ;
         vntourism:hasReignTo    "1623" ;
@@ -120,7 +120,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Nguyễn_Phước_Hạo@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1868-02-12" ;
-        vntourism:hasBornAt     "Imperial_City_of_Huế" , "Nguyễn_dynasty" ;
+        vntourism:hasBornAt     "Nguyễn_dynasty" , "Imperial_City_of_Huế" ;
         vntourism:hasDied       "1884-07-31" ;
         vntourism:hasReignFrom  "1883" ;
         vntourism:hasReignTo    "1884" ;
@@ -129,7 +129,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Nguyễn_Phúc_Ưng_Lịch@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1872-08-03" ;
-        vntourism:hasBornAt     "Nguyễn_dynasty" , "Imperial_City_of_Huế" ;
+        vntourism:hasBornAt     "Imperial_City_of_Huế" , "Nguyễn_dynasty" ;
         vntourism:hasDied       "1943-01-04" ;
         vntourism:hasReignFrom  "1884" ;
         vntourism:hasReignTo    "1885" ;
@@ -165,7 +165,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Lê_Ninh@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1515" ;
-        vntourism:hasBornAt     "Hanoi" , "Đại_Việt" ;
+        vntourism:hasBornAt     "Đại_Việt" , "Hanoi" ;
         vntourism:hasDied       "1548-03-09" ;
         vntourism:hasReignFrom  "1533" ;
         vntourism:hasReignTo    "1548" ;
@@ -174,7 +174,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Trịnh_Kiểm@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1503-09-14" ;
-        vntourism:hasBornAt     "Yên_Định_District" , "Thanh_Hóa_province" ;
+        vntourism:hasBornAt     "Yên_Định_district" , "Thanh_Hóa_province" ;
         vntourism:hasDied       "1570-03-29" ;
         vntourism:hasReignFrom  "1545" ;
         vntourism:hasReignTo    "1545" ;
@@ -201,7 +201,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Đinh_Bộ_Lĩnh@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "0924-03-22" ;
-        vntourism:hasBornAt     "Gia_Viễn_District" , "" , "Ninh_Bình_province" ;
+        vntourism:hasBornAt     "" , "Ninh_Bình_province" , "Gia_Viễn_district" ;
         vntourism:hasDied       "October 979" ;
         vntourism:hasReignFrom  "0968" ;
         vntourism:hasReignTo    "0979" ;
@@ -210,7 +210,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Nguyễn_Phúc_Ưng_Đăng@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1868-02-12" ;
-        vntourism:hasBornAt     "Imperial_City_of_Huế" , "Nguyễn_dynasty" ;
+        vntourism:hasBornAt     "Nguyễn_dynasty" , "Imperial_City_of_Huế" ;
         vntourism:hasDied       "1884-07-31" ;
         vntourism:hasReignFrom  "1883" ;
         vntourism:hasReignTo    "1884" ;
@@ -228,7 +228,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Nguyễn_Phúc_Tuấn@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1885-10-08" ;
-        vntourism:hasBornAt     "Imperial_City_of_Huế" , "French_Indochina" ;
+        vntourism:hasBornAt     "French_Indochina" , "Imperial_City_of_Huế" ;
         vntourism:hasDied       "1925-11-06" ;
         vntourism:hasReignFrom  "1916" ;
         vntourism:hasReignTo    "1916" ;
@@ -255,7 +255,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Nguyễn_Phúc_Minh@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1872-08-03" ;
-        vntourism:hasBornAt     "Nguyễn_dynasty" , "Imperial_City_of_Huế" ;
+        vntourism:hasBornAt     "Imperial_City_of_Huế" , "Nguyễn_dynasty" ;
         vntourism:hasDied       "1943-01-04" ;
         vntourism:hasReignFrom  "1884" ;
         vntourism:hasReignTo    "1885" ;
@@ -264,7 +264,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Trần_Vượng@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1319-05-17" ;
-        vntourism:hasBornAt     "Đại_Việt" , "Hanoi" ;
+        vntourism:hasBornAt     "Hanoi" , "Đại_Việt" ;
         vntourism:hasDied       "1341-06-11" ;
         vntourism:hasReignFrom  "1329" ;
         vntourism:hasReignTo    "1341" ;
@@ -277,7 +277,7 @@
         vntourism:hasDied       "1278" ;
         vntourism:hasReignFrom  "1224" ;
         vntourism:hasReignTo    "1225" ;
-        vntourism:hasSuccessor  "Trần_dynasty" , "Trần_Thái_Tông" .
+        vntourism:hasSuccessor  "Trần_Thái_Tông" , "Trần_dynasty" .
 
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Nguyễn_Phúc_Bửu_Lân@en>
         a                       vntourism:Person ;
@@ -309,7 +309,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Trần_Phủ@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "December 1321" ;
-        vntourism:hasBornAt     "Đại_Việt" , "Hanoi" ;
+        vntourism:hasBornAt     "Hanoi" , "Đại_Việt" ;
         vntourism:hasDied       "1394-12-15" ;
         vntourism:hasReignFrom  "1370" ;
         vntourism:hasReignTo    "1370" ;
@@ -327,7 +327,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Nguyễn_Phúc_Ưng_Thị@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1864-02-19" ;
-        vntourism:hasBornAt     "Nguyễn_dynasty" , "Imperial_City_of_Huế" ;
+        vntourism:hasBornAt     "Imperial_City_of_Huế" , "Nguyễn_dynasty" ;
         vntourism:hasDied       "1889-01-28" ;
         vntourism:hasReignFrom  "1885" ;
         vntourism:hasReignTo    "1889" ;
@@ -345,7 +345,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Nguyễn_Phúc_Ưng_Kỷ@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1864-02-19" ;
-        vntourism:hasBornAt     "Nguyễn_dynasty" , "Imperial_City_of_Huế" ;
+        vntourism:hasBornAt     "Imperial_City_of_Huế" , "Nguyễn_dynasty" ;
         vntourism:hasDied       "1889-01-28" ;
         vntourism:hasReignFrom  "1885" ;
         vntourism:hasReignTo    "1889" ;
@@ -372,7 +372,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Nguyễn_Quang_Bình@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1753" ;
-        vntourism:hasBornAt     "Đại_Việt" , "Đàng_Trong" , "Bình_Định_province" ;
+        vntourism:hasBornAt     "Bình_Định_province" , "Đàng_Trong" , "Đại_Việt" ;
         vntourism:hasDied       "1792-09-16" ;
         vntourism:hasReignFrom  "1788" ;
         vntourism:hasReignTo    "1792" ;
@@ -381,7 +381,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Đinh_Hoàn@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "0924-03-22" ;
-        vntourism:hasBornAt     "Ninh_Bình_province" , "" , "Gia_Viễn_District" ;
+        vntourism:hasBornAt     "Gia_Viễn_district" , "Ninh_Bình_province" , "" ;
         vntourism:hasDied       "October 979" ;
         vntourism:hasReignFrom  "0968" ;
         vntourism:hasReignTo    "0979" ;
@@ -399,7 +399,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Nguyễn_Phúc_Miên_Tông@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1807-06-16" ;
-        vntourism:hasBornAt     "Imperial_City_of_Huế" , "Vietnam" ;
+        vntourism:hasBornAt     "Vietnam" , "Imperial_City_of_Huế" ;
         vntourism:hasDied       "1847-10-04" ;
         vntourism:hasReignFrom  "1841" ;
         vntourism:hasReignTo    "1847" ;
@@ -414,28 +414,28 @@
         vntourism:hasReignTo    "1729" ;
         vntourism:hasSuccessor  "Lê_Duy_Phường" .
 
-<http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Nguyễn_Phúc_Tuyền@en>
-        a                       vntourism:Person ;
-        vntourism:hasBorn       "1807-06-16" ;
-        vntourism:hasBornAt     "Imperial_City_of_Huế" , "Vietnam" ;
-        vntourism:hasDied       "1847-10-04" ;
-        vntourism:hasReignFrom  "1841" ;
-        vntourism:hasReignTo    "1847" ;
-        vntourism:hasSuccessor  "Tự_Đức" .
-
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Lê_Duy_Cáp@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1663-04-22" ;
-        vntourism:hasBornAt     "Đại_Việt" , "Hanoi" ;
+        vntourism:hasBornAt     "Hanoi" , "Đại_Việt" ;
         vntourism:hasDied       "1716-06-04" ;
         vntourism:hasReignFrom  "1675" ;
         vntourism:hasReignTo    "1705" ;
         vntourism:hasSuccessor  "Lê_Dụ_Tông" .
 
+<http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Nguyễn_Phúc_Tuyền@en>
+        a                       vntourism:Person ;
+        vntourism:hasBorn       "1807-06-16" ;
+        vntourism:hasBornAt     "Vietnam" , "Imperial_City_of_Huế" ;
+        vntourism:hasDied       "1847-10-04" ;
+        vntourism:hasReignFrom  "1841" ;
+        vntourism:hasReignTo    "1847" ;
+        vntourism:hasSuccessor  "Tự_Đức" .
+
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Trần_Thuyên@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1276-09-17" ;
-        vntourism:hasBornAt     "Đại_Việt" , "Hanoi" ;
+        vntourism:hasBornAt     "Hanoi" , "Đại_Việt" ;
         vntourism:hasDied       "1320-12-12" ;
         vntourism:hasReignFrom  "1293" ;
         vntourism:hasReignTo    "1293" ;
@@ -489,7 +489,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Trịnh_Căn@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1633-07-18" ;
-        vntourism:hasBornAt     "North_Vietnam" , "Hanoi" ;
+        vntourism:hasBornAt     "Hanoi" , "North_Vietnam" ;
         vntourism:hasDied       "1709-06-17" ;
         vntourism:hasReignFrom  "1682" ;
         vntourism:hasReignTo    "1682" ;
@@ -498,7 +498,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Nguyễn_Phúc_Thì@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1829-09-22" ;
-        vntourism:hasBornAt     "Imperial_City_of_Huế" , "Nguyễn_dynasty" ;
+        vntourism:hasBornAt     "Nguyễn_dynasty" , "Imperial_City_of_Huế" ;
         vntourism:hasDied       "1883-07-19" ;
         vntourism:hasReignFrom  "1847" ;
         vntourism:hasReignTo    "1883" ;
@@ -507,7 +507,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Nguyễn_Phúc_Ưng_Đường@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1864-02-19" ;
-        vntourism:hasBornAt     "Nguyễn_dynasty" , "Imperial_City_of_Huế" ;
+        vntourism:hasBornAt     "Imperial_City_of_Huế" , "Nguyễn_dynasty" ;
         vntourism:hasDied       "1889-01-28" ;
         vntourism:hasReignFrom  "1885" ;
         vntourism:hasReignTo    "1889" ;
@@ -516,7 +516,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Lê_Nghi_Dân@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "June 1439" ;
-        vntourism:hasBornAt     "Hanoi" , "Đại_Việt" ;
+        vntourism:hasBornAt     "Đại_Việt" , "Hanoi" ;
         vntourism:hasDied       "1460-06-06" ;
         vntourism:hasReignFrom  "1459" ;
         vntourism:hasReignTo    "1460" ;
@@ -561,7 +561,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Trịnh_Tạc@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1606-04-11" ;
-        vntourism:hasBornAt     "North_Vietnam" , "Hanoi" ;
+        vntourism:hasBornAt     "Hanoi" , "North_Vietnam" ;
         vntourism:hasDied       "1682-09-24" ;
         vntourism:hasReignFrom  "1657" ;
         vntourism:hasReignTo    "1682" ;
@@ -597,7 +597,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Nguyễn_Phúc_Bửu_Đảo@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1885-10-08" ;
-        vntourism:hasBornAt     "Imperial_City_of_Huế" , "French_Indochina" ;
+        vntourism:hasBornAt     "French_Indochina" , "Imperial_City_of_Huế" ;
         vntourism:hasDied       "1925-11-06" ;
         vntourism:hasReignFrom  "1916" ;
         vntourism:hasReignTo    "1916" ;
@@ -642,7 +642,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Nguyễn_Phúc_Biện@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1864-02-19" ;
-        vntourism:hasBornAt     "Nguyễn_dynasty" , "Imperial_City_of_Huế" ;
+        vntourism:hasBornAt     "Imperial_City_of_Huế" , "Nguyễn_dynasty" ;
         vntourism:hasDied       "1889-01-28" ;
         vntourism:hasReignFrom  "1885" ;
         vntourism:hasReignTo    "1889" ;
@@ -675,15 +675,6 @@
         vntourism:hasReignTo    "1916" ;
         vntourism:hasSuccessor  "Khải_Định" .
 
-<http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Lý_Đức_Chính@en>
-        a                       vntourism:Person ;
-        vntourism:hasBorn       "1000-07-29" ;
-        vntourism:hasBornAt     "Duyên Ninh pagoda, Ninh Bình province" ;
-        vntourism:hasDied       "1054-11-03" ;
-        vntourism:hasReignFrom  "1028" ;
-        vntourism:hasReignTo    "1028" ;
-        vntourism:hasSuccessor  "Lý_Thánh_Tông" .
-
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Lê_Duy_Kỳ@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1607-11-19" ;
@@ -692,6 +683,15 @@
         vntourism:hasReignFrom  "1619" ;
         vntourism:hasReignTo    "1643" ;
         vntourism:hasSuccessor  "Lê_Chân_Tông" .
+
+<http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Lý_Đức_Chính@en>
+        a                       vntourism:Person ;
+        vntourism:hasBorn       "1000-07-29" ;
+        vntourism:hasBornAt     "Duyên Ninh pagoda, Ninh Bình province" ;
+        vntourism:hasDied       "1054-11-03" ;
+        vntourism:hasReignFrom  "1028" ;
+        vntourism:hasReignTo    "1028" ;
+        vntourism:hasSuccessor  "Lý_Thánh_Tông" .
 
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Trần_Hạo@en>
         a                       vntourism:Person ;
@@ -705,7 +705,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Lê_Quang_Trị@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1509" ;
-        vntourism:hasBornAt     "Names_of_Vietnam" , "Hanoi" , "Personal_Flag_of_Emperor_Minh_Mang.svg" ;
+        vntourism:hasBornAt     "Personal_Flag_of_Emperor_Minh_Mang.svg" , "Hanoi" , "Names_of_Vietnam" ;
         vntourism:hasDied       "1516" ;
         vntourism:hasReignFrom  "1516" ;
         vntourism:hasReignTo    "1516" ;
@@ -759,7 +759,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Trần_Ngỗi@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1375" ;
-        vntourism:hasBornAt     "Names_of_Vietnam" , "Hanoi" ;
+        vntourism:hasBornAt     "Hanoi" , "Names_of_Vietnam" ;
         vntourism:hasDied       "1410" ;
         vntourism:hasReignFrom  "1407" ;
         vntourism:hasReignTo    "1407" ;
@@ -777,7 +777,7 @@
 <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Nguyễn_Phúc_Hồng_Nhậm@en>
         a                       vntourism:Person ;
         vntourism:hasBorn       "1829-09-22" ;
-        vntourism:hasBornAt     "Imperial_City_of_Huế" , "Nguyễn_dynasty" ;
+        vntourism:hasBornAt     "Nguyễn_dynasty" , "Imperial_City_of_Huế" ;
         vntourism:hasDied       "1883-07-19" ;
         vntourism:hasReignFrom  "1847" ;
         vntourism:hasReignTo    "1883" ;

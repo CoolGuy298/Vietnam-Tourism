@@ -2,8 +2,12 @@ package tourism.entity.site;
 
 import java.io.IOException;
 
+import org.apache.jena.rdf.model.*;
+import org.apache.jena.query.*;
+
 import tourism.entity.IQueryable;
 import tourism.processor.DataProcessor;
+import tourism.vocabulary.VNTOURISM;
 
 public class Building extends TouristSite implements IQueryable{
 	private String hasBuildTime;
@@ -44,7 +48,37 @@ public class Building extends TouristSite implements IQueryable{
 				+ "     FILTER (lang(?name) = 'en')\r\n"
 				+ "}";
 		
-		DataProcessor.QueryToFile(queryString, Building.TARGETFILE, new Building());
+		//DataProcessor.QueryToFile(queryString, Building.TARGETFILE, new Building());
+		QueryExecution qexec = DataProcessor.getQueryConnection(queryString);
+		ResultSet results = qexec.execSelect();
+		Model m = ModelFactory.createDefaultModel();
+		m.setNsPrefix(VNTOURISM.PREFIX, VNTOURISM.URI);
+		
+		while (results.hasNext()) {
+			QuerySolution qs = results.next();
+			Model temp = this.processQuery(qs);
+			m = m.union(temp);
+		}
+		
+		DataProcessor.writeToFile(m, Building.TARGETFILE);
+		qexec.close();
+	}
+	
+	public Model processQuery(QuerySolution qs) throws IOException {
+		Model localModel = ModelFactory.createDefaultModel();
+		String name = qs.getLiteral("name").toString().replace(" ", "_");
+		String hasAdministrativeDivision = DataProcessor.processImpl(qs, "hasAdministrativeDivision");
+		Literal hasBuildTimeLiteral = qs.getLiteral("hasBuildTime");
+		String hasBuildTime = "";
+		if (hasBuildTimeLiteral != null)
+			hasBuildTime = hasBuildTimeLiteral.toString();
+		Building b = new Building(name, hasAdministrativeDivision, hasBuildTime);
+			
+		localModel.createResource(VNTOURISM.URI + b.getName(), VNTOURISM.HeritageSite)
+				.addLiteral(VNTOURISM.hasAdministrativeDivision, b.getHasAdministrativeDivision())
+				.addLiteral(VNTOURISM.hasBuildTime, b.getHasBuildTime());
+		
+		return localModel;
 	}
 	
 }

@@ -2,8 +2,12 @@ package tourism.entity.person;
 
 import java.io.IOException;
 
+import org.apache.jena.query.*;
+import org.apache.jena.rdf.model.*;
+
 import tourism.entity.IQueryable;
 import tourism.processor.DataProcessor;
+import tourism.vocabulary.VNTOURISM;
 
 public class King extends Person implements IQueryable{
 	private String hasReignFrom;
@@ -60,7 +64,41 @@ public class King extends Person implements IQueryable{
 				+ "     ?king dbo:successor ?hasSuccessor.\r\n"
 				+ "}";
 		
-		DataProcessor.QueryToFile(queryString, King.TARGETFILE, new King());
+		QueryExecution qexec = DataProcessor.getQueryConnection(queryString);
+		ResultSet results = qexec.execSelect();
+		Model m = ModelFactory.createDefaultModel();
+		m.setNsPrefix(VNTOURISM.PREFIX, VNTOURISM.URI);
 		
+		while (results.hasNext()) {
+			QuerySolution qs = results.next();
+			Model temp = this.processQuery(qs);
+			m = m.union(temp);
+		}
+		
+		DataProcessor.writeToFile(m, King.TARGETFILE);
+		qexec.close();
+	}
+	
+	public Model processQuery(QuerySolution qs) throws IOException {
+		Model localModel = ModelFactory.createDefaultModel();
+		String name = qs.getLiteral("name").toString().replace(" ", "_");
+		String hasBorn = qs.getLiteral("hasBorn").toString();
+		String hasBornAt = DataProcessor.processImpl(qs, "hasBornAt");
+		String hasDied = qs.getLiteral("hasDied").toString();
+		String hasReignFrom = qs.getLiteral("hasReignFrom").toString();
+		String hasReignTo = qs.getLiteral("hasReignTo").toString();
+		String hasSuccessor = DataProcessor.processImpl(qs, "hasSuccessor");
+				
+		King k = new King(name, hasBorn, hasBornAt, hasDied, hasReignFrom, hasReignTo, hasSuccessor);
+				
+		localModel.createResource(VNTOURISM.URI + k.getName(), VNTOURISM.Person)
+			.addLiteral(VNTOURISM.hasBorn, k.getHasBorn())
+			.addLiteral(VNTOURISM.hasBornAt, k.getHasBornAt())
+			.addLiteral(VNTOURISM.hasDied, k.getHasDied())
+			.addLiteral(VNTOURISM.hasReignFrom, k.getHasReignFrom())
+			.addLiteral(VNTOURISM.hasReignTo, k.getHasReignTo())
+			.addLiteral(VNTOURISM.hasSuccessor, k.getHasSuccessor());
+		
+		return localModel;
 	}
 }
