@@ -48,7 +48,6 @@ public class Building extends TouristSite implements IQueryable{
 				+ "     FILTER (lang(?name) = 'en')\r\n"
 				+ "}";
 		
-		//DataProcessor.QueryToFile(queryString, Building.TARGETFILE, new Building());
 		QueryExecution qexec = DataProcessor.getQueryConnection(queryString);
 		ResultSet results = qexec.execSelect();
 		Model m = ModelFactory.createDefaultModel();

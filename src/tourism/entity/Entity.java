@@ -1,10 +1,7 @@
 package tourism.entity;
 
-import org.apache.jena.rdf.model.Model;
-
 public abstract class Entity {
 	private String name;
-	private Model model;
 
 	public String getName() {
 		return name;
@@ -22,14 +19,5 @@ public abstract class Entity {
 		super();
 		this.name = name;
 	}
-
-	public Model getModel() {
-		return model;
-	}
-
-	public void setModel(Model model) {
-		this.model = model;
-	}
-	
 	
 }
