@@ -67,21 +67,30 @@ public class King extends Person implements IQueryable{
 				+ "     FILTER (lang(?hasDescription) = 'en')\r\n"
 				+ "}";
 		
+		// Retrieve connection to obtain the results
 		QueryExecution qexec = DataProcessor.getQueryConnection(queryString);
 		ResultSet results = qexec.execSelect();
+		
+		// Container model to store triples
 		Model m = ModelFactory.createDefaultModel();
 		m.setNsPrefix(VNTOURISM.PREFIX, VNTOURISM.URI);
 		
+		// Iterate through the result set to add on to the container model
 		while (results.hasNext()) {
 			QuerySolution qs = results.next();
 			Model temp = this.processQuery(qs);
+			
+			// Add triple from obtained local model to the container model
 			m = m.union(temp);
 		}
 		
 		DataProcessor.writeToFile(m, King.TARGETFILE);
+		
+		// Close the connection
 		qexec.close();
 	}
 	
+	// Obtain class-specific properties for each result and store the triple into a model
 	public Model processQuery(QuerySolution qs) throws IOException {
 		Model localModel = ModelFactory.createDefaultModel();
 		String name = qs.getLiteral("name").toString().replace(" ", "_");
@@ -95,7 +104,8 @@ public class King extends Person implements IQueryable{
 				
 		King k = new King(name, hasDescription, hasBorn, hasBornAt, hasDied, hasReignFrom,
 				hasReignTo, hasSuccessor);
-				
+		
+		// Add triple to the local model
 		localModel.createResource(VNTOURISM.URI + k.getName(), VNTOURISM.Person)
 			.addLiteral(VNTOURISM.hasDescription, k.getHasDescription())
 			.addLiteral(VNTOURISM.hasBorn, k.getHasBorn())

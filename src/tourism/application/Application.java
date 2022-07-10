@@ -11,6 +11,7 @@ import tourism.entity.site.*;
 public class Application {
 
 	public static void main(String[] args) throws IOException{
+		// Container for registering query handlers
 		ArrayList<IQueryable> handlerList = new ArrayList<IQueryable>();
 		handlerList.add(new King());
 		handlerList.add(new Festival());
