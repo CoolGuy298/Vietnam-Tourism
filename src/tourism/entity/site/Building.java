@@ -24,28 +24,30 @@ public class Building extends TouristSite implements IQueryable{
 		
 	}
 	
-	public Building(String name, String hasAdministrativeDivision, String hasBuildTime) {
-		super(name, hasAdministrativeDivision);
+	public Building(String name, String hasDescription, String hasAdministrativeDivision, String hasBuildTime) {
+		super(name, hasDescription, hasAdministrativeDivision);
 		this.hasBuildTime = hasBuildTime;
 	}
 	
-	public void query() throws IOException {
+	public void queryToFile() throws IOException {
 		String queryString = "prefix dbc: <http://dbpedia.org/resource/Category:>\r\n"
 				+ "prefix dbp: <http://dbpedia.org/property/>\r\n"
 				+ "prefix dbo: <http://dbpedia.org/ontology/>\r\n"
 				+ "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\r\n"
 				+ "\r\n"
-				+ "SELECT DISTINCT ?building ?name ?hasAdministrativeDivision ?hasBuildTime \r\n"
+				+ "SELECT DISTINCT ?building ?name ?hasDescription ?hasAdministrativeDivision ?hasBuildTime \r\n"
 				+ "WHERE {\r\n"
 				+ "     {?building dbo:wikiPageWikiLink dbc:Forts_in_Vietnam .}\r\n"
 				+ "     UNION {?building dbo:wikiPageWikiLink dbc:Archaeological_sites_in_Vietnam .}\r\n"
 				+ "     UNION {?building dbo:wikiPageWikiLink dbc:Monuments_and_memorials_in_Vietnam .}\r\n"
 				+ "     UNION {?building dbo:wikiPageWikiLink dbc:Buddhist_temples_in_Vietnam .}\r\n"	
 				+ "     ?building rdfs:label ?name.\r\n"
+				+ "     ?building rdfs:comment ?hasDescription.\r\n"
 				+ "     ?building dbp:location ?hasAdministrativeDivision.\r\n"
 				+ "     OPTIONAL {?building dbp:built ?hasBuildTime.}\r\n"
 				+ "     OPTIONAL {?building dbp:established ?hasBuildTime.}\r\n"
 				+ "     FILTER (lang(?name) = 'en')\r\n"
+				+ "     FILTER (lang(?hasDescription) = 'en')\r\n"
 				+ "}";
 		
 		QueryExecution qexec = DataProcessor.getQueryConnection(queryString);
@@ -66,14 +68,16 @@ public class Building extends TouristSite implements IQueryable{
 	public Model processQuery(QuerySolution qs) throws IOException {
 		Model localModel = ModelFactory.createDefaultModel();
 		String name = qs.getLiteral("name").toString().replace(" ", "_");
+		String hasDescription = qs.getLiteral("hasDescription").toString();
 		String hasAdministrativeDivision = DataProcessor.processImpl(qs, "hasAdministrativeDivision");
 		Literal hasBuildTimeLiteral = qs.getLiteral("hasBuildTime");
 		String hasBuildTime = "";
 		if (hasBuildTimeLiteral != null)
 			hasBuildTime = hasBuildTimeLiteral.toString();
-		Building b = new Building(name, hasAdministrativeDivision, hasBuildTime);
+		Building b = new Building(name, hasDescription, hasAdministrativeDivision, hasBuildTime);
 			
 		localModel.createResource(VNTOURISM.URI + b.getName(), VNTOURISM.HeritageSite)
+				.addLiteral(VNTOURISM.hasDescription, b.getHasDescription())
 				.addLiteral(VNTOURISM.hasAdministrativeDivision, b.getHasAdministrativeDivision())
 				.addLiteral(VNTOURISM.hasBuildTime, b.getHasBuildTime());
 		

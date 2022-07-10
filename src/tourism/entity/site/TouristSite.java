@@ -17,8 +17,8 @@ public class TouristSite extends Entity{
 		
 	}
 
-	public TouristSite(String name, String hasAdministrativeDivision) {
-		super(name);
+	public TouristSite(String name, String hasDescription, String hasAdministrativeDivision) {
+		super(name, hasDescription);
 		this.hasAdministrativeDivision = hasAdministrativeDivision;
 	}
 	

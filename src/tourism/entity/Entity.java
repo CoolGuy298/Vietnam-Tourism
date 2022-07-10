@@ -2,6 +2,17 @@ package tourism.entity;
 
 public abstract class Entity {
 	private String name;
+	private String hasDescription;
+	
+	public Entity() {
+		
+	}
+
+	public Entity(String name, String hasDescription) {
+		super();
+		this.name = name;
+		this.setHasDescription(hasDescription);
+	}
 
 	public String getName() {
 		return name;
@@ -11,13 +22,12 @@ public abstract class Entity {
 		this.name = name;
 	}
 	
-	public Entity() {
-		
+	public String getHasDescription() {
+		return hasDescription;
 	}
 
-	public Entity(String name) {
-		super();
-		this.name = name;
+	public void setHasDescription(String hasDescription) {
+		this.hasDescription = hasDescription;
 	}
 	
 }

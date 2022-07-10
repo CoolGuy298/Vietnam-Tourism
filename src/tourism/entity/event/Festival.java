@@ -10,31 +10,19 @@ import tourism.processor.DataProcessor;
 import tourism.vocabulary.VNTOURISM;
 
 public class Festival extends Event implements IQueryable {
-	private String hasDescription;
-	
 	private static final String TARGETFILE = "festivals.txt";
 
-	public String getHasDescription() {
-		return hasDescription;
-	}
-
-	public void setHasDescription(String hasDescription) {
-		this.hasDescription = hasDescription;
-	}
-	
 	public Festival() {
 		
 	}
 
-	public Festival(String name, String hasTimeHappen, String hasDescription) {
-		super(name, hasTimeHappen);
-		this.hasDescription = hasDescription;
+	public Festival(String name, String hasDescription, String hasTimeHappen) {
+		super(name, hasDescription, hasTimeHappen);
 	}
 
-	public void query() throws IOException {
+	public void queryToFile() throws IOException {
 		String queryString = "prefix yago: <http://dbpedia.org/class/yago/>\r\n"
 				+ "prefix dbp: <http://dbpedia.org/property/>\r\n"
-				+ "prefix dbo: <http://dbpedia.org/ontology/>\r\n"
 				+ "prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\r\n"
 				+ "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\r\n"
 				+ "\r\n"
@@ -42,7 +30,7 @@ public class Festival extends Event implements IQueryable {
 				+ "WHERE {\r\n"
 				+ "     {?festival rdf:type yago:WikicatFestivalsInVietnam.}\r\n"
 				+ "     ?festival rdfs:label ?name.\r\n"
-				+ "     ?festival dbo:abstract ?hasDescription.\r\n"
+				+ "     ?festival rdfs:comment ?hasDescription.\r\n"
 				+ "     OPTIONAL {?festival dbp:date ?begin.}\r\n"
 				+ "     FILTER (lang(?name) = 'en')\r\n"
 				+ "     FILTER (lang(?hasDescription) = 'en')\r\n"
