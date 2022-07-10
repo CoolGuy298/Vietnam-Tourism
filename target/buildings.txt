@@ -1,0 +1,67 @@
+@prefix vntourism: <http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#> .
+
+<http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Phong_Châu@en>
+        a                       vntourism:HeritageSite ;
+        vntourism:hasAdministrativeDivision
+                "Bạch Hạc District, Việt Trì, Phú Thọ Province, Viet Nam" ;
+        vntourism:hasBuildTime  "" .
+
+<http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Long_Tan_Cross@en>
+        a                       vntourism:HeritageSite ;
+        vntourism:hasAdministrativeDivision
+                "Australian War Memorial, Canberra" ;
+        vntourism:hasBuildTime  "1969-08-18^^http://www.w3.org/2001/XMLSchema#date" .
+
+<http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Mán_Bạc@en>
+        a                       vntourism:HeritageSite ;
+        vntourism:hasAdministrativeDivision
+                "Yên Mô District, Ninh Bình Province, Vietnam" ;
+        vntourism:hasBuildTime  "1850^^http://www.w3.org/2001/XMLSchema#integer" .
+
+<http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Việt_Nam_Quốc_Tự@en>
+        a                       vntourism:HeritageSite ;
+        vntourism:hasAdministrativeDivision
+                "3" ;
+        vntourism:hasBuildTime  "" .
+
+<http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Bình_An_Cemetery@en>
+        a                       vntourism:HeritageSite ;
+        vntourism:hasAdministrativeDivision
+                "Bình_Dương_province" , "Dĩ_An" ;
+        vntourism:hasBuildTime  "~1965@en" .
+
+<http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Con_Moong_Cave@en>
+        a                       vntourism:HeritageSite ;
+        vntourism:hasAdministrativeDivision
+                "Thành Yên commune, Thạch Thành District, Thanh Hóa Province" ;
+        vntourism:hasBuildTime  "" .
+
+<http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Hoằng_Phúc_Pagoda@en>
+        a                       vntourism:HeritageSite ;
+        vntourism:hasAdministrativeDivision
+                "Lệ_Thủy_District" , "Vietnam" , "Quảng_Bình_province" ;
+        vntourism:hasBuildTime  "" .
+
+<http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Citadel_of_Saigon@en>
+        a                       vntourism:HeritageSite ;
+        vntourism:hasAdministrativeDivision
+                "Vietnam" , "Ho_Chi_Minh_City" ;
+        vntourism:hasBuildTime  "1790^^http://www.w3.org/2001/XMLSchema#integer" .
+
+<http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Xá_Lợi_Pagoda@en>
+        a                       vntourism:HeritageSite ;
+        vntourism:hasAdministrativeDivision
+                "Ho_Chi_Minh_City" ;
+        vntourism:hasBuildTime  "" .
+
+<http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Citadel_of_the_Hồ_Dynasty@en>
+        a                       vntourism:HeritageSite ;
+        vntourism:hasAdministrativeDivision
+                "Vĩnh_Lộc_District" , "Thanh_Hóa_province" , "Vietnam" , "North_Central_Coast" , "Tây_Giai" ;
+        vntourism:hasBuildTime  "" .
+
+<http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#Imperial_Citadel_of_Thăng_Long@en>
+        a                       vntourism:HeritageSite ;
+        vntourism:hasAdministrativeDivision
+                "Hanoi" , "Vietnam" ;
+        vntourism:hasBuildTime  "" .
