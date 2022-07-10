@@ -10,6 +10,7 @@ public class DataProcessor {
 	public static final String DIRECTORY = "target/";
 	public static final String OUTPUTFORMAT = "Turtle";
 	
+	
 	// Return a connection to the sparql endpoint with the provided query string
 	public static QueryExecution getQueryConnection(String queryString){
 		Query query = QueryFactory.create(queryString);

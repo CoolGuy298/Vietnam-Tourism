@@ -9,8 +9,8 @@ public class Event extends Entity {
 		
 	}
 
-	public Event(String name, String hasDescription, String hasTimeHappen) {
-		super(name, hasDescription);
+	public Event(String name, String label, String hasDescription, String hasTimeHappen) {
+		super(name, label, hasDescription);
 		this.hasTimeHappen = hasTimeHappen;
 	}
 

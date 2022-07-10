@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.*;
+import org.apache.jena.vocabulary.RDFS;
 
 import tourism.entity.IQueryable;
 import tourism.processor.DataProcessor;
@@ -19,10 +20,10 @@ public class King extends Person implements IQueryable{
 		super();
 	}
 	
-	public King(String name, String hasDescription, String hasBorn, String hasBornAt,
+	public King(String name, String label, String hasDescription, String hasBorn, String hasBornAt,
 			String hasDied, String hasReignFrom, String hasReignTo,
 			String hasSuccessor) {
-		super(name, hasDescription, hasBorn, hasBornAt, hasDied);
+		super(name, label, hasDescription, hasBorn, hasBornAt, hasDied);
 		this.hasReignFrom = hasReignFrom;
 		this.hasReignTo = hasReignTo;
 		this.hasSuccessor = hasSuccessor;
@@ -52,11 +53,11 @@ public class King extends Person implements IQueryable{
 				+ "prefix dbo: <http://dbpedia.org/ontology/>\r\n"
 				+ "prefix dbr: <http://dbpedia.org/resource/>\r\n"
 				+ "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\r\n"
-				+ "SELECT DISTINCT ?king ?name ?hasDescription (str(?born) AS ?hasBorn) ?hasBornAt (str(?died) AS ?hasDied) (str(?from) AS ?hasReignFrom) (str(?to) AS ?hasReignTo) ?hasSuccessor\r\n"
+				+ "SELECT DISTINCT ?king ?label ?hasDescription (str(?born) AS ?hasBorn) ?hasBornAt (str(?died) AS ?hasDied) (str(?from) AS ?hasReignFrom) (str(?to) AS ?hasReignTo) ?hasSuccessor\r\n"
 				+ "WHERE {\r\n"
 				+ "     {<http://dbpedia.org/resource/List_of_monarchs_of_Vietnam> dbo:wikiPageWikiLink ?king}\r\n"
 				+ "     {?king dbo:wikiPageWikiLink dbr:List_of_monarchs_of_Vietnam.}\r\n"
-				+ "     ?king dbp:fullName ?name.\r\n"
+				+ "     ?king rdfs:label ?label.\r\n"
 				+ "     ?king rdfs:comment ?hasDescription.\r\n"
 				+ "     ?king dbp:birthDate ?born.\r\n"
 				+ "     ?king dbp:birthPlace ?hasBornAt.\r\n"
@@ -64,6 +65,7 @@ public class King extends Person implements IQueryable{
 				+ "     ?king dbo:activeYearsStartYear ?from.\r\n"
 				+ "     ?king dbo:activeYearsEndYear ?to.\r\n"
 				+ "     ?king dbo:successor ?hasSuccessor.\r\n"
+				+ "     FILTER (lang(?label) = 'en')\r\n"
 				+ "     FILTER (lang(?hasDescription) = 'en')\r\n"
 				+ "}";
 		
@@ -73,7 +75,7 @@ public class King extends Person implements IQueryable{
 		
 		// Container model to store triples
 		Model m = ModelFactory.createDefaultModel();
-		m.setNsPrefix(VNTOURISM.PREFIX, VNTOURISM.URI);
+		m.setNsPrefixes(VNTOURISM.PREFIXMAP);
 		
 		// Iterate through the result set to add on to the container model
 		while (results.hasNext()) {
@@ -93,7 +95,8 @@ public class King extends Person implements IQueryable{
 	// Obtain class-specific properties for each result and store the triple into a model
 	public Model processQuery(QuerySolution qs) throws IOException {
 		Model localModel = ModelFactory.createDefaultModel();
-		String name = qs.getLiteral("name").toString().replace(" ", "_");
+		String name = DataProcessor.processImpl(qs, "king");
+		String label = qs.getLiteral("label").toString();
 		String hasDescription = qs.getLiteral("hasDescription").toString();
 		String hasBorn = qs.getLiteral("hasBorn").toString();
 		String hasBornAt = DataProcessor.processImpl(qs, "hasBornAt");
@@ -102,11 +105,12 @@ public class King extends Person implements IQueryable{
 		String hasReignTo = qs.getLiteral("hasReignTo").toString();
 		String hasSuccessor = DataProcessor.processImpl(qs, "hasSuccessor");
 				
-		King k = new King(name, hasDescription, hasBorn, hasBornAt, hasDied, hasReignFrom,
+		King k = new King(name, label, hasDescription, hasBorn, hasBornAt, hasDied, hasReignFrom,
 				hasReignTo, hasSuccessor);
 		
 		// Add triple to the local model
 		localModel.createResource(VNTOURISM.URI + k.getName(), VNTOURISM.Person)
+			.addLiteral(RDFS.label, k.getLabel())
 			.addLiteral(VNTOURISM.hasDescription, k.getHasDescription())
 			.addLiteral(VNTOURISM.hasBorn, k.getHasBorn())
 			.addLiteral(VNTOURISM.hasBornAt, k.getHasBornAt())

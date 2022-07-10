@@ -1,12 +1,20 @@
 package tourism.vocabulary;
 
+import java.util.Map;
+
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.ResourceFactory;
+import org.apache.jena.vocabulary.RDFS;
 
 public class VNTOURISM {
 	public static final String URI = "http://www.semanticweb.org/minhn/ontologies/2021/0/vntourism#";
 	public static final String PREFIX = "vntourism";
+	
+	public static final Map<String, String> PREFIXMAP = Map.of(
+			VNTOURISM.PREFIX, VNTOURISM.URI,
+			"rdfs", RDFS.getURI()
+	);
 	
 	public static final Resource Festival = ResourceFactory.createResource(URI + "Festival");
 	public static final Resource Person = ResourceFactory.createResource(URI + "Person");

@@ -30,9 +30,9 @@ public class Person extends Entity{
 		super();
 	}
 	
-	public Person(String name, String hasDescription, String hasBorn, String hasBornAt,
+	public Person(String name, String label, String hasDescription, String hasBorn, String hasBornAt,
 			String hasDied) {
-		super(name, hasDescription);
+		super(name, label, hasDescription);
 		this.hasBorn = hasBorn;
 		this.hasBornAt = hasBornAt;
 		this.hasDied = hasDied;
