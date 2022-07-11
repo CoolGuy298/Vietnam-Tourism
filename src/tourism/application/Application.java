@@ -18,9 +18,13 @@ public class Application {
 		handlerList.add(new Building());
 		handlerList.add(new NaturalSite());
 		
-		for (IQueryable handler : handlerList) {
-			handler.queryToFile();
-		}
+		try {
+			for (IQueryable handler : handlerList) {
+				handler.queryToFile();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
 		
 	}
 
