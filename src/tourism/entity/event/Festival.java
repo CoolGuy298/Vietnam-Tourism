@@ -20,9 +20,9 @@ public class Festival extends Event implements IQueryable {
 	public Festival(String name, String label, String hasDescription, String hasTimeHappen) {
 		super(name, label, hasDescription, hasTimeHappen);
 	}
-
-	public void queryToFile() throws IOException {
-		String queryString = "prefix yago: <http://dbpedia.org/class/yago/>\r\n"
+	
+	public String queryString() {
+		return "prefix yago: <http://dbpedia.org/class/yago/>\r\n"
 				+ "prefix dbp: <http://dbpedia.org/property/>\r\n"
 				+ "prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\r\n"
 				+ "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\r\n"
@@ -36,6 +36,10 @@ public class Festival extends Event implements IQueryable {
 				+ "     FILTER (lang(?label) = 'en')\r\n"
 				+ "     FILTER (lang(?hasDescription) = 'en')\r\n"
 				+ "}";
+	}
+
+	public void queryToFile() throws IOException {
+		String queryString = this.queryString();
 		
 		QueryExecution qexec = DataProcessor.getQueryConnection(queryString);
 		ResultSet results = qexec.execSelect();
@@ -44,7 +48,8 @@ public class Festival extends Event implements IQueryable {
 		
 		while (results.hasNext()) {
 			QuerySolution qs = results.next();
-			Model temp = this.processQuery(qs);
+			Festival f = (Festival) this.getObjectFromQuery(qs);
+			Model temp = this.getModelInstance(f);
 			m = m.union(temp);
 		}
 		
@@ -52,8 +57,7 @@ public class Festival extends Event implements IQueryable {
 		qexec.close();
 	}
 	
-	public Model processQuery(QuerySolution qs) throws IOException {
-		Model localModel = ModelFactory.createDefaultModel();
+	public IQueryable getObjectFromQuery(QuerySolution qs) throws IOException {
 		String name = DataProcessor.processImpl(qs, "festival");
 		String label = qs.getLiteral("label").toString();
 		String hasDescription = qs.getLiteral("hasDescription").toString();
@@ -61,8 +65,13 @@ public class Festival extends Event implements IQueryable {
 		String hasTimeHappen = "";
 		if (hasTimeHappenLiteral != null)
 			hasTimeHappen = hasTimeHappenLiteral.toString();
-		Festival f = new Festival(name, label, hasDescription, hasTimeHappen);
-			
+
+		return new Festival(name, label, hasDescription, hasTimeHappen);
+	}
+	
+	public Model getModelInstance(IQueryable queryableEntity) {
+		Festival f = (Festival) queryableEntity;
+		Model localModel = ModelFactory.createDefaultModel();
 		localModel.createResource(VNTOURISM.URI + f.getName(), VNTOURISM.Festival)
 		    .addLiteral(RDFS.label, f.getLabel())
 			.addLiteral(VNTOURISM.hasDescription, f.getHasDescription())

@@ -21,8 +21,8 @@ public class NaturalSite extends TouristSite implements IQueryable{
 		super(name, label, hasDescription, hasAdministrativeDivision);
 	}
 	
-	public void queryToFile() throws IOException {
-		String queryString = "prefix yago: <http://dbpedia.org/class/yago/>\r\n"
+	public String queryString() {
+		return "prefix yago: <http://dbpedia.org/class/yago/>\r\n"
 				+ "prefix dbp: <http://dbpedia.org/property/>\r\n"
 				+ "prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\r\n"
 				+ "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\r\n"
@@ -40,14 +40,21 @@ public class NaturalSite extends TouristSite implements IQueryable{
 				+ "     FILTER (lang(?label) = 'en')\r\n"
 				+ "     FILTER (lang(?hasDescription) = 'en')\r\n"
 				+ "}";
+	}
+	
+	public void queryToFile() throws IOException {
+		String queryString = this.queryString();
 		
 		QueryExecution qexec = DataProcessor.getQueryConnection(queryString);
 		ResultSet results = qexec.execSelect();
+		
 		Model m = ModelFactory.createDefaultModel();
 		m.setNsPrefixes(VNTOURISM.PREFIXMAP);
+		
 		while (results.hasNext()) {
 			QuerySolution qs = results.next();
-			Model temp = this.processQuery(qs);
+			NaturalSite nt = (NaturalSite) this.getObjectFromQuery(qs);
+			Model temp = this.getModelInstance(nt);
 			m = m.union(temp);
 		}
 		
@@ -55,15 +62,18 @@ public class NaturalSite extends TouristSite implements IQueryable{
 		qexec.close();
 	}
 	
-	public Model processQuery(QuerySolution qs) throws IOException {
-		Model localModel = ModelFactory.createDefaultModel();
+	public IQueryable getObjectFromQuery(QuerySolution qs) throws IOException {
 		String name = DataProcessor.processImpl(qs, "site");
 		String label = qs.getLiteral("label").toString();
 		String hasDescription = qs.getLiteral("hasDescription").toString();
 		String hasAdministrativeDivision = DataProcessor.processImpl(qs, "hasAdministrativeDivision");
-
-		NaturalSite nt = new NaturalSite(name, label, hasDescription, hasAdministrativeDivision);
-			
+		
+		return new NaturalSite(name, label, hasDescription, hasAdministrativeDivision);
+	}
+	
+	public Model getModelInstance(IQueryable queryableEntity) {
+		NaturalSite nt = (NaturalSite) queryableEntity;
+		Model localModel = ModelFactory.createDefaultModel();
 		localModel.createResource(VNTOURISM.URI + nt.getName(), VNTOURISM.HeritageSite)
 				.addLiteral(RDFS.label, nt.getLabel())
 				.addLiteral(VNTOURISM.hasDescription, nt.getHasDescription())

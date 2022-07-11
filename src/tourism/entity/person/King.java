@@ -47,9 +47,9 @@ public class King extends Person implements IQueryable{
 	public void setHasSuccessor(String hasSuccessor) {
 		this.hasSuccessor = hasSuccessor;
 	}
-
-	public void queryToFile() throws IOException {
-		String queryString = "prefix dbp: <http://dbpedia.org/property/>\r\n"
+	
+	public String queryString() {
+		return "prefix dbp: <http://dbpedia.org/property/>\r\n"
 				+ "prefix dbo: <http://dbpedia.org/ontology/>\r\n"
 				+ "prefix dbr: <http://dbpedia.org/resource/>\r\n"
 				+ "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\r\n"
@@ -68,6 +68,10 @@ public class King extends Person implements IQueryable{
 				+ "     FILTER (lang(?label) = 'en')\r\n"
 				+ "     FILTER (lang(?hasDescription) = 'en')\r\n"
 				+ "}";
+	}
+
+	public void queryToFile() throws IOException {
+		String queryString = this.queryString();
 		
 		// Retrieve connection to obtain the results
 		QueryExecution qexec = DataProcessor.getQueryConnection(queryString);
@@ -80,7 +84,8 @@ public class King extends Person implements IQueryable{
 		// Iterate through the result set to add on to the container model
 		while (results.hasNext()) {
 			QuerySolution qs = results.next();
-			Model temp = this.processQuery(qs);
+			King k = (King) this.getObjectFromQuery(qs);
+			Model temp = this.getModelInstance(k);
 			
 			// Add triple from obtained local model to the container model
 			m = m.union(temp);
@@ -92,9 +97,7 @@ public class King extends Person implements IQueryable{
 		qexec.close();
 	}
 	
-	// Obtain class-specific properties for each result and store the triple into a model
-	public Model processQuery(QuerySolution qs) throws IOException {
-		Model localModel = ModelFactory.createDefaultModel();
+	public IQueryable getObjectFromQuery(QuerySolution qs) throws IOException {
 		String name = DataProcessor.processImpl(qs, "king");
 		String label = qs.getLiteral("label").toString();
 		String hasDescription = qs.getLiteral("hasDescription").toString();
@@ -105,10 +108,15 @@ public class King extends Person implements IQueryable{
 		String hasReignTo = qs.getLiteral("hasReignTo").toString();
 		String hasSuccessor = DataProcessor.processImpl(qs, "hasSuccessor");
 				
-		King k = new King(name, label, hasDescription, hasBorn, hasBornAt, hasDied, hasReignFrom,
+		return new King(name, label, hasDescription, hasBorn, hasBornAt, hasDied, hasReignFrom,
 				hasReignTo, hasSuccessor);
-		
+
+	}
+	
+	public Model getModelInstance(IQueryable queryableEntity) {
+		King k = (King) queryableEntity;
 		// Add triple to the local model
+		Model localModel = ModelFactory.createDefaultModel();
 		localModel.createResource(VNTOURISM.URI + k.getName(), VNTOURISM.Person)
 			.addLiteral(RDFS.label, k.getLabel())
 			.addLiteral(VNTOURISM.hasDescription, k.getHasDescription())
@@ -120,5 +128,6 @@ public class King extends Person implements IQueryable{
 			.addLiteral(VNTOURISM.hasSuccessor, k.getHasSuccessor());
 		
 		return localModel;
+		
 	}
 }

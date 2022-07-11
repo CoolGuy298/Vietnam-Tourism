@@ -30,8 +30,8 @@ public class Building extends TouristSite implements IQueryable{
 		this.hasBuildTime = hasBuildTime;
 	}
 	
-	public void queryToFile() throws IOException {
-		String queryString = "prefix dbc: <http://dbpedia.org/resource/Category:>\r\n"
+	public String queryString() {
+		return "prefix dbc: <http://dbpedia.org/resource/Category:>\r\n"
 				+ "prefix dbp: <http://dbpedia.org/property/>\r\n"
 				+ "prefix dbo: <http://dbpedia.org/ontology/>\r\n"
 				+ "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\r\n"
@@ -51,6 +51,10 @@ public class Building extends TouristSite implements IQueryable{
 				+ "     FILTER (lang(?hasDescription) = 'en')\r\n"
 				+ "}";
 		
+	}
+	
+	public void queryToFile() throws IOException {
+		String queryString = this.queryString();
 		QueryExecution qexec = DataProcessor.getQueryConnection(queryString);
 		ResultSet results = qexec.execSelect();
 		Model m = ModelFactory.createDefaultModel();
@@ -58,7 +62,8 @@ public class Building extends TouristSite implements IQueryable{
 		
 		while (results.hasNext()) {
 			QuerySolution qs = results.next();
-			Model temp = this.processQuery(qs);
+			Building b = (Building) this.getObjectFromQuery(qs);
+			Model temp = this.getModelInstance(b);
 			m = m.union(temp);
 		}
 		
@@ -66,8 +71,7 @@ public class Building extends TouristSite implements IQueryable{
 		qexec.close();
 	}
 	
-	public Model processQuery(QuerySolution qs) throws IOException {
-		Model localModel = ModelFactory.createDefaultModel();
+	public IQueryable getObjectFromQuery(QuerySolution qs) throws IOException {
 		String name = DataProcessor.processImpl(qs, "building");
 		String label = qs.getLiteral("label").toString();
 		String hasDescription = qs.getLiteral("hasDescription").toString();
@@ -76,8 +80,13 @@ public class Building extends TouristSite implements IQueryable{
 		String hasBuildTime = "";
 		if (hasBuildTimeLiteral != null)
 			hasBuildTime = hasBuildTimeLiteral.toString();
-		Building b = new Building(name, label, hasDescription, hasAdministrativeDivision, hasBuildTime);
-			
+
+		return new Building(name, label, hasDescription, hasAdministrativeDivision, hasBuildTime);
+	}
+	
+	public Model getModelInstance(IQueryable queryableEntity) {
+		Building b = (Building) queryableEntity;
+		Model localModel = ModelFactory.createDefaultModel();
 		localModel.createResource(VNTOURISM.URI + b.getName(), VNTOURISM.HeritageSite)
 				.addLiteral(RDFS.label, b.getLabel())
 				.addLiteral(VNTOURISM.hasDescription, b.getHasDescription())
@@ -85,6 +94,7 @@ public class Building extends TouristSite implements IQueryable{
 				.addLiteral(VNTOURISM.hasBuildTime, b.getHasBuildTime());
 		
 		return localModel;
+		
 	}
 	
 }
